@@ -4,12 +4,12 @@
 # X=Y sets X to Y. Y may be a string, float, or list of 3 floats
 ############################################################################
 
-[QuadControlParams] 
+[QuadControlParams]
 
 UseIdealEstimator=1
 
 # Physical properties
-Mass = 0.4
+Mass = 0.5
 L = 0.17
 Ixx = 0.0023
 Iyy = 0.0023
