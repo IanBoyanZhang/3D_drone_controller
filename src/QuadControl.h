@@ -35,8 +35,8 @@ public:
   // controller gains
   float kpPosXY, kpPosZ;
   float kpVelXY, kpVelZ;
-  float kpBank, kpYaw;
-  float KiPosZ;
+  float kpBank, kpYaw, kpPitch;
+  float kiPosZ;
   V3F kpPQR;
   
   // limits & saturations
