@@ -3,6 +3,8 @@
 #include "Utility/SimpleConfig.h"
 #include "Utility/StringUtils.h"
 
+#include <iostream>
+
 using namespace SLR;
 
 Trajectory::Trajectory() : traj(MAX_TRAJECTORY_POINTS) 

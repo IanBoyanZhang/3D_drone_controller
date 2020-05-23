@@ -12,6 +12,10 @@
 #include <systemlib/param/param.h>
 #endif
 
+#include <iostream>
+// #include "Solver.h"
+#include "Solver/Solver.h"
+
 void QuadControl::Init()
 {
   BaseController::Init();
@@ -310,7 +314,10 @@ VehicleCommand QuadControl::RunControl(float dt, float simTime)
   float thrustMargin = .1f*(maxMotorThrust - minMotorThrust);
   collThrustCmd = CONSTRAIN(collThrustCmd, (minMotorThrust+ thrustMargin)*4.f, (maxMotorThrust-thrustMargin)*4.f);
   
+  // TODO: desired ACC would be provided by minimumTrajGen algorithm
   V3F desAcc = LateralPositionControl(curTrajPoint.position, curTrajPoint.velocity, estPos, estVel, curTrajPoint.accel);
+
+  // V3F desAcc1 = time_optimal_path_planner(curTrajPoint.position, curTrajPoint.velocity, curTrajPoint.omega, curTrajPoint.attitude);
   
   V3F desOmega = RollPitchControl(desAcc, estAtt, collThrustCmd);
   desOmega.z = YawControl(curTrajPoint.attitude.Yaw(), estAtt.Yaw());

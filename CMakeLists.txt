@@ -14,7 +14,9 @@ FILE(GLOB SOURCES
         src/Simulation/*.cpp
         src/Utility/*.cpp
         src/MavlinkNode/*.cpp
-        src/MavlinkNode/*.h)
+        src/MavlinkNode/*.h
+        external/*.cpp
+        )
 
 FILE(GLOB HEADERS
         src/*.h
@@ -22,9 +24,15 @@ FILE(GLOB HEADERS
         src/Math/*.h
         src/Simulation/*.h
         src/Utility/*.h
+        src/Solver.h
         lib/matrix/*.hpp
         lib/mavlink/*.h
-        lib/mavlink/common/*.h)
+        lib/mavlink/common/*.h
+        external/*.h
+        )
+
+file( GLOB ALGLIB_SOURCES external/ALGLIB/*.cpp )
+file( GLOB ALGLIB_HEADERS external/ALGLIB/*.h )
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
@@ -43,6 +51,8 @@ include_directories(${OPENGL_INCLUDE_DIR})
 add_executable(CPPSim
         ${SOURCES}
         ${HEADERS}
+	${ALGLIB_SOURCES}
+	${ALGLIB_HEADERS}
         )
 
 target_link_libraries(CPPSim
