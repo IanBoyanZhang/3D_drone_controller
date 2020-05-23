@@ -315,9 +315,10 @@ VehicleCommand QuadControl::RunControl(float dt, float simTime)
   collThrustCmd = CONSTRAIN(collThrustCmd, (minMotorThrust+ thrustMargin)*4.f, (maxMotorThrust-thrustMargin)*4.f);
   
   // TODO: desired ACC would be provided by minimumTrajGen algorithm
-  V3F desAcc = LateralPositionControl(curTrajPoint.position, curTrajPoint.velocity, estPos, estVel, curTrajPoint.accel);
+  // V3F desAcc = LateralPositionControl(curTrajPoint.position, curTrajPoint.velocity, estPos, estVel, curTrajPoint.accel);
 
-  // V3F desAcc1 = time_optimal_path_planner(curTrajPoint.position, curTrajPoint.velocity, curTrajPoint.omega, curTrajPoint.attitude);
+  // V3F desAcc = time_optimal_path_planner(curTrajPoint.position, curTrajPoint.velocity, curTrajPoint.omega, (), curTrajPoint.attitude.ToEulerYPR());
+  V3F desAcc = time_optimal_path_planner(curTrajPoint.position, curTrajPoint.velocity, curTrajPoint.omega, V3F(16, 0, 4.5), V3F(0, 0, 0));
   
   V3F desOmega = RollPitchControl(desAcc, estAtt, collThrustCmd);
   desOmega.z = YawControl(curTrajPoint.attitude.Yaw(), estAtt.Yaw());
